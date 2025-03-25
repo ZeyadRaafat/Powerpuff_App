@@ -33,8 +33,8 @@ class MiniSplashh extends StatelessWidget {
           Image.asset(
             hero,
             height: 400,
-            width: 500,
-            fit: BoxFit.contain,
+            width: 400,
+            fit: BoxFit.cover,
           ),
 
           SizedBox(height: 20),

@@ -22,6 +22,7 @@ class _Splash1V1State extends State<Splash1V1> {
       D2: false,
       D3: false,
       color: blossomcolor,
+      buttext: 'Next',
     );
   }
 

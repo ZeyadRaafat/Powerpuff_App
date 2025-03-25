@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'app_router.dart';
+import 'core/services/local_storage_service.dart';
+import 'features/view_models/splash_viewmodel.dart';
 
-void main() {
-  runApp(PowerPuff());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await LocalStorageService.init();
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => SplashViewModel()),
+      ],
+      child: PowerPuff(),
+    ),
+  );
 }
 
 

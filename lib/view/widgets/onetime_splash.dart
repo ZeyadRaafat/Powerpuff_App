@@ -8,6 +8,7 @@ class MiniSplashh extends StatelessWidget {
   MiniSplashh({
     super.key,
     this.color,
+    required this.buttext,
     required this.hero,
     required this.text,
     required this.D1,
@@ -17,6 +18,7 @@ class MiniSplashh extends StatelessWidget {
   });
 
   String hero;
+  String buttext;
   Color? color=Colors.white;
   final VoidCallback onPressed;
   String text;
@@ -34,7 +36,7 @@ class MiniSplashh extends StatelessWidget {
             hero,
             height: 400,
             width: 400,
-            fit: BoxFit.cover,
+            fit: BoxFit.contain,
           ),
 
           SizedBox(height: 20),
@@ -78,7 +80,7 @@ class MiniSplashh extends StatelessWidget {
           ),
         ),
         child: Text(
-          "Next",
+          buttext,
           style: GoogleFonts.poppins(
             fontSize: 18,
             fontWeight: FontWeight.w600,

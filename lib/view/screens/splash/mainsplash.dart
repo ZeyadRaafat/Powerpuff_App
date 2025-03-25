@@ -1,9 +1,10 @@
-import 'package:e_learning/constants.dart';
 import 'package:e_learning/core/utils/assets.dart';
-import 'package:e_learning/view/screens/homePage.dart';
+import 'package:e_learning/features/view_models/splash_viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
+
+import '../../../features/view_models/splash_viewmodel.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -14,8 +15,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 4), () {
-      GoRouter.of(context).go('/splash1v1');
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<SplashViewModel>().navigateAfterSplash(context);
     });
   }
 

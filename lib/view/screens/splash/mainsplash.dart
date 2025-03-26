@@ -1,4 +1,5 @@
 import 'package:e_learning/constants.dart';
+import 'package:e_learning/view/screens/homePage.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
@@ -14,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 4), () {
       GoRouter.of(context).go('/splash1v1');
     });
   }
@@ -28,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Container(
             alignment: Alignment(0, -1),
             child: Lottie.asset(
-              gif1,
+              AssetsData.gif1,
               width: 350,
               height: 600,
               fit: BoxFit.contain,
@@ -38,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Container(
             alignment: Alignment(0, 0),
             child: Lottie.asset(
-              loading,
+              AssetsData.loading,
               width: 100,
               height: 130,
               fit: BoxFit.contain,

@@ -1,8 +1,7 @@
-import 'package:e_learning/constants.dart';
-import 'package:e_learning/view/screens/homePage.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+import '/core/utils/assets.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

@@ -17,12 +17,11 @@ class _Splash1V3State extends State<Splash1V3> {
     return MiniSplashh(
       hero: AssetsData.buttercup,
       text: 'Quit stalling! Let\'s power up your skills with Elera—right now!',
-      onPressed: () => GoRouter.of(context).go('/splash1v3'),
+      onPressed: () => GoRouter.of(context).go('/Login_screen'),
       D1: false,
       D2: false,
       D3: true,
       color: buttercupcolor,
     );
   }
-
 }

@@ -1,8 +1,5 @@
-import 'package:e_learning/view/widgets/elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../constants.dart';
 
 class MiniSplashh extends StatelessWidget {
   MiniSplashh({
@@ -17,10 +14,10 @@ class MiniSplashh extends StatelessWidget {
   });
 
   String hero;
-  Color? color=Colors.white;
+  Color? color = Colors.white;
   final VoidCallback onPressed;
   String text;
-  bool D1=false,D2=false,D3=false;
+  bool D1 = false, D2 = false, D3 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -68,31 +65,28 @@ class MiniSplashh extends StatelessWidget {
           SizedBox(height: 40),
 
           // Next Button
-      ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
-          padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
+          ElevatedButton(
+            onPressed: onPressed,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white,
+              padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+            ),
+            child: Text(
+              "Next",
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: color,
+              ),
+            ),
           ),
-        ),
-        child: Text(
-          "Next",
-          style: GoogleFonts.poppins(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: color,
-          ),
-        ),
-      ),
         ],
       ),
     );
   }
-
-
-
 
   // Function to build a dot indicator
   Widget _buildDot({required bool isActive}) {

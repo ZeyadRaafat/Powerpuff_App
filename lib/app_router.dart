@@ -12,6 +12,8 @@ class AppRouter {
     GetPage(name: '/splash1v1', page: () => Splash1V1()),
     GetPage(name: '/splash1v2', page: () => Splash1V2()),
     GetPage(name: '/splash1v3', page: () => Splash1V3()),
+    GetPage(name: '/Login_screen',page: () => LoginScreen()),
+    GetPage(name: '/Signup_screen', page: () => SignupScreen()),
   ];
 }
 

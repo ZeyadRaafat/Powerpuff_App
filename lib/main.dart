@@ -1,32 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'app_router.dart';
 import 'core/services/local_storage_service.dart';
-import 'features/view_models/splash_viewmodel.dart';
+import 'features/cupit/splash_cupit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await LocalStorageService.init();
 
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => SplashViewModel()),
-      ],
+    BlocProvider(
+      create: (_) => SplashCubit(),
       child: PowerPuff(),
     ),
   );
 }
-
-
 
 class PowerPuff extends StatelessWidget {
   const PowerPuff({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: AppRouter.router,
+    return GetMaterialApp(
+      getPages: AppRouter.routes,
       debugShowCheckedModeBanner: false,
     );
   }

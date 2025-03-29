@@ -9,12 +9,14 @@ class LocalStorageService {
   }
 
   static bool getFirstTime() {
-    if(_prefs==null) return true;
-    return _prefs!.getBool(_firstTimeKey) ?? true;
+    if (_prefs == null) {
+      return true;
+    }
+    bool value = _prefs!.getBool(_firstTimeKey) ?? true;
+    return value;
   }
 
   static Future<void> saveFirstTime(bool value) async {
-    if(_prefs==null) return;
-    await _prefs?.setBool('first_time', value);
+    await _prefs?.setBool(_firstTimeKey, value);
   }
 }

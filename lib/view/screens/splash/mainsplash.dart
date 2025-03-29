@@ -1,10 +1,10 @@
 import 'package:e_learning/core/utils/assets.dart';
-import 'package:e_learning/features/view_models/splash_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../features/view_models/splash_viewmodel.dart';
+import '../../../features/cupit/splash_cupit.dart';
+
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -15,9 +15,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<SplashViewModel>().navigateAfterSplash(context);
+      context.read<SplashCubit>().navigateAfterSplash(context);
     });
   }
 

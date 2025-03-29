@@ -1,11 +1,12 @@
+import 'package:e_learning/core/utils/assets.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
-import '/core/utils/assets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../features/cupit/splash_cupit.dart';
+
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
-
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -14,8 +15,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 4), () {
-      GoRouter.of(context).go('/splash1v1');
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<SplashCubit>().navigateAfterSplash(context);
     });
   }
 

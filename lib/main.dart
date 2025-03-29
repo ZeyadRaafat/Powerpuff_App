@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'app_router.dart';
-import 'package:e_learning/constants.dart';
+import 'core/services/local_storage_service.dart';
+import 'features/cupit/splash_cupit.dart';
 
-void main() {
-  runApp(PowerPuff());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await LocalStorageService.init();
+
+  runApp(
+    BlocProvider(
+      create: (_) => SplashCubit(),
+      child: PowerPuff(),
+    ),
+  );
 }
 
 class PowerPuff extends StatelessWidget {
@@ -11,32 +22,9 @@ class PowerPuff extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: AppRouter.router,
+    return GetMaterialApp(
+      getPages: AppRouter.routes,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          primaryColor: bubbelscolor,
-          scaffoldBackgroundColor: Colors.white,
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-              elevation: 0,
-              foregroundColor: Colors.white,
-              backgroundColor: bubbelscolor,
-              shape: const StadiumBorder(),
-              maximumSize: const Size(double.infinity, 56),
-              minimumSize: const Size(double.infinity, 56),
-            ),
-          ),
-          inputDecorationTheme: const InputDecorationTheme(
-            filled: true,
-            fillColor: kPrimaryLightColor,
-            iconColor: bubbelscolor,
-            prefixIconColor: bubbelscolor,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(30)),
-              borderSide: BorderSide.none,
-            ),
-          )),
     );
   }
 }

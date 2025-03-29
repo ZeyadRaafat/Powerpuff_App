@@ -5,7 +5,7 @@ import 'package:e_learning/view/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:e_learning/constants.dart';
 import 'package:e_learning/view/widgets/AccountCheck.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import '/core/utils/assets.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -14,37 +14,41 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            DefaultText(defaulttext: "Login to your account"),
-            SizedBox(
-              height: 250,
-              width: 250,
-              child: Image.asset(AssetsData.allofthem),
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 100),
+                DefaultText(defaulttext: "Login to your account"),
+                SizedBox(
+                  height: 300,
+                  width: 250,
+                  child: Image.asset(AssetsData.allofthem),
+                ),
+                const SizedBox(height: 10),
+                TextFieldFor(hintText: 'Email'),
+                const SizedBox(height: 10),
+                TextFieldFor(hintText: 'Your Password',isPasswordField: true,),
+                const SizedBox(height: 20),
+                CustomElevatedButton(
+                  text: 'login',
+                  backgroundColor: bubbelscolor,
+                  onPressed: () {},
+                ),
+                const SizedBox(height: 15),
+                AccountCheck(
+                  press: () => Get.toNamed('/Signup_screen'),
+                ),
+                const SizedBox(height: 5),
+                LoginWays(),
+              ],
             ),
-            SizedBox(height: 10),
-            TextFieldFor(
-              textforfield: 'Email',
-            ),
-            SizedBox(height: 10),
-            TextFieldFor(
-              textforfield: 'Your Password',
-            ),
-            SizedBox(height: 20),
-            CustomElevatedButton(
-                text: 'login', backgroundColor: bubbelscolor, onPressed: () {}),
-            SizedBox(height: 10),
-            AccountCheck(
-              press: () => GoRouter.of(context).go('/Signup_screen'),
-            ),
-            SizedBox(height: 5),
-            LoginWays(),
-          ],
-        ),
+          ), // ✅ Properly closed the Padding widget
+        ],
       ),
     );
   }

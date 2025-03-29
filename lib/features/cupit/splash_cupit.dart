@@ -32,12 +32,12 @@ class SplashCubit extends Cubit<SplashState> {
     if (state.isFirstTime) {
       Get.toNamed('/splash1v1');
     } else {
-      Get.toNamed('/home');
+      Get.toNamed('/Login_screen');
     }
   }
 
   Future<void> completeSplashSequence(BuildContext context) async {
     await setFirstTimeFalse();
-    Get.toNamed('/home');
+    Get.toNamed('/Login_screen');
   }
 }

@@ -23,8 +23,6 @@ class _Splash1V3State extends State<Splash1V3> {
         hero: AssetsData.buttercup,
         text: 'Quit stalling! Let\'s power up your skills with Elera—right now!',
         onPressed: () => context.read<SplashCubit>().completeSplashSequence(context),
-        D1: false,
-        D2: false,
         D3: true,
         color: buttercupcolor,
         buttext: 'Finish',

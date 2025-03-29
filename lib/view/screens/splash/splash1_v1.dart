@@ -20,8 +20,6 @@ class _Splash1V1State extends State<Splash1V1> {
       text: 'Knowledge is power! Learn from the best with top courses and mentors!',
       onPressed: () => Get.to(Splash1V2(),transition: Transition.fade,duration: Duration(milliseconds: 500)),
       D1: true,
-      D2: false,
-      D3: false,
       color: blossomcolor,
       buttext: 'Next',
     );

@@ -1,4 +1,6 @@
 import 'package:e_learning/view/screens/homePage.dart';
+import 'package:e_learning/view/screens/login&sign/Loginscreen.dart';
+import 'package:e_learning/view/screens/login&sign/Signupscreen.dart';
 import 'package:e_learning/view/screens/splash/mainsplash.dart';
 import 'package:e_learning/view/screens/splash/splash1_v1.dart';
 import 'package:e_learning/view/screens/splash/splash1_v2.dart';

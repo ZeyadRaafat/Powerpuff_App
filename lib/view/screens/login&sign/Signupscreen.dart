@@ -5,7 +5,7 @@ import 'package:e_learning/view/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:e_learning/view/widgets/AccountCheck.dart';
 import 'package:e_learning/constants.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
@@ -27,15 +27,17 @@ class SignupScreen extends StatelessWidget {
             ),
             SizedBox(height: 10),
             TextFieldFor(
-              textforfield: 'name',
+              hintText: 'name',
             ),
             SizedBox(height: 10),
             TextFieldFor(
-              textforfield: 'your pass',
+              hintText: 'your pass',
+              isPasswordField: true,
             ),
             SizedBox(height: 10),
             TextFieldFor(
-              textforfield: 'write pass again',
+              hintText: 'write pass again',
+              isPasswordField: true,
             ),
             SizedBox(height: 20),
             CustomElevatedButton(
@@ -46,21 +48,13 @@ class SignupScreen extends StatelessWidget {
             SizedBox(height: 10),
             AccountCheck(
               login: false,
-              press: () => GoRouter.of(context).go('/Login_screen'),
+              press: () => Get.toNamed('/Login_screen'),
             ),
             SizedBox(height: 5),
             LoginWays(),
           ],
         ),
       ),
-    );
-  }
-
-  Text defaulttext() {
-    return Text(
-      'Login to your account',
-      style: TextStyle(
-          fontSize: 25, fontWeight: FontWeight.bold, color: bubbelscolor),
     );
   }
 }

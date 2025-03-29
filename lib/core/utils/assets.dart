@@ -4,5 +4,5 @@ class AssetsData {
   static const blossom = 'assets/images/blossom.jpg';
   static const buttercup = 'assets/images/buttercup.jpg';
   static const bubbels = 'assets/images/bubbles.jpg';
-  static const allofthem = 'assets/images/ppf.jpg';
+  static const allofthem = 'assets/images/ppf.png';
 }

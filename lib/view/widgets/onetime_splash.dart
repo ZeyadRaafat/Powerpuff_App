@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MiniSplashh extends StatelessWidget {
-  MiniSplashh({
+  const MiniSplashh({
     super.key,
     this.color = Colors.white, // Default value
     required this.buttext,
@@ -34,9 +34,7 @@ class MiniSplashh extends StatelessWidget {
             width: 400,
             fit: BoxFit.contain,
           ),
-
           const SizedBox(height: 20),
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
@@ -49,9 +47,7 @@ class MiniSplashh extends StatelessWidget {
               ),
             ),
           ),
-
           const SizedBox(height: 20),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -60,9 +56,7 @@ class MiniSplashh extends StatelessWidget {
               _buildDot(isActive: D3),
             ],
           ),
-
           const SizedBox(height: 40),
-
           ElevatedButton(
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(

@@ -28,7 +28,7 @@ class TextFieldFor extends StatefulWidget {
       this.prefixIcon});
 
   @override
-  _TextFieldForState createState() => new _TextFieldForState();
+  _TextFieldForState createState() => _TextFieldForState();
 }
 
 class _TextFieldForState extends State<TextFieldFor> {

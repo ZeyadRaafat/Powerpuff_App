@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'app_router.dart';
 import 'core/services/local_storage_service.dart';
 import 'features/cupit/splash_cupit.dart';
+import 'features/view_models/theme_viewmodel.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,9 +23,11 @@ class PowerPuff extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    final ThemeViewModel themeViewModel = Get.put(ThemeViewModel());
+    return Obx(() => GetMaterialApp(
+      theme: themeViewModel.currentTheme.value,
       getPages: AppRouter.routes,
       debugShowCheckedModeBanner: false,
-    );
+    ));
   }
 }

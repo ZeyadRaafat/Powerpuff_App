@@ -1,10 +1,10 @@
-import 'package:e_learning/view/screens/homePage.dart';
-import 'package:e_learning/view/screens/login&sign/Loginscreen.dart';
-import 'package:e_learning/view/screens/login&sign/Signupscreen.dart';
-import 'package:e_learning/view/screens/splash/mainsplash.dart';
-import 'package:e_learning/view/screens/splash/splash1_v1.dart';
-import 'package:e_learning/view/screens/splash/splash1_v2.dart';
-import 'package:e_learning/view/screens/splash/splash1_v3.dart';
+import 'package:Powerpuff/view/screens/homePage.dart';
+import 'package:Powerpuff/view/screens/login&sign/Loginscreen.dart';
+import 'package:Powerpuff/view/screens/login&sign/Signupscreen.dart';
+import 'package:Powerpuff/view/screens/splash/mainsplash.dart';
+import 'package:Powerpuff/view/screens/splash/splash1_v1.dart';
+import 'package:Powerpuff/view/screens/splash/splash1_v2.dart';
+import 'package:Powerpuff/view/screens/splash/splash1_v3.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 class AppRouter {

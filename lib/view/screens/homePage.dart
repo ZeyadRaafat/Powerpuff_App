@@ -1,13 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../constants.dart';
+import '../../features/view_models/theme_viewmodel.dart';
+import '../widgets/elevated_button.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final ThemeViewModel themeViewModel = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: Center(child: Text('Zeyad',style:TextStyle(fontWeight: FontWeight.w900,fontSize: 50) ,))
+      appBar: AppBar(title: Text("Change Theme")),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CustomElevatedButton(
+              onPressed: () => themeViewModel.changeTheme("Bubbels"),
+              backgroundColor: bubbelscolor,
+              text: "Bubbels Theme",
+              textColor: Colors.black,
+            ),
+            CustomElevatedButton(
+              onPressed: () => themeViewModel.changeTheme("Blossom"),
+              backgroundColor: blossomcolor,
+              text: "Blossom Theme",
+              textColor: Colors.black,
+            ),
+            CustomElevatedButton(
+              onPressed: () => themeViewModel.changeTheme("Buttercup"),
+              backgroundColor: buttercupcolor,
+              text: "Buttercup Theme",
+              textColor: Colors.black,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

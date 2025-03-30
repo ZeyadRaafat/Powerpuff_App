@@ -1,4 +1,4 @@
-package com.example.e_learning
+package com.example.Powerpuff
 
 import io.flutter.embedding.android.FlutterActivity
 

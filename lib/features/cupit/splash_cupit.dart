@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:e_learning/core/services/local_storage_service.dart';
+import 'package:Powerpuff/core/services/local_storage_service.dart';
 import 'package:get/get.dart';
 
 
@@ -32,12 +32,12 @@ class SplashCubit extends Cubit<SplashState> {
     if (state.isFirstTime) {
       Get.toNamed('/splash1v1');
     } else {
-      Get.toNamed('/home');
+      Get.toNamed('/Login_screen');
     }
   }
 
   Future<void> completeSplashSequence(BuildContext context) async {
     await setFirstTimeFalse();
-    Get.toNamed('/home');
+    Get.toNamed('/Login_screen');
   }
 }

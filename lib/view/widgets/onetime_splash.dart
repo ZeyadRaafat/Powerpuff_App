@@ -4,23 +4,22 @@ import 'package:google_fonts/google_fonts.dart';
 class MiniSplashh extends StatelessWidget {
   MiniSplashh({
     super.key,
-    this.color,
+    this.color = Colors.white, // Default value
     required this.buttext,
     required this.hero,
     required this.text,
-    required this.D1,
-    required this.D2,
-    required this.D3,
+    this.D1 = false,
+    this.D2 = false,
+    this.D3 = false,
     required this.onPressed,
   });
 
-  String hero;
-
-  String buttext;
-  Color? color=Colors.white;
+  final String hero;
+  final String buttext;
+  final Color color;
   final VoidCallback onPressed;
-  String text;
-  bool D1 = false, D2 = false, D3 = false;
+  final String text;
+  final bool D1, D2, D3;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,6 @@ class MiniSplashh extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Image
           Image.asset(
             hero,
             height: 400,
@@ -37,11 +35,10 @@ class MiniSplashh extends StatelessWidget {
             fit: BoxFit.contain,
           ),
 
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
 
-          // Text
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               text,
               textAlign: TextAlign.center,
@@ -53,9 +50,8 @@ class MiniSplashh extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
 
-          // Dots Indicator
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -65,35 +61,34 @@ class MiniSplashh extends StatelessWidget {
             ],
           ),
 
-          SizedBox(height: 40),
+          const SizedBox(height: 40),
 
-          // Next Button
-
-      ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
-          padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
-        ),
-        child: Text(
-          buttext,
-          style: GoogleFonts.poppins(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: color,
+          ElevatedButton(
+            onPressed: onPressed,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+            ),
+            child: Text(
+              buttext,
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: color,
+              ),
+            ),
           ),
         ],
       ),
     );
   }
 
-  // Function to build a dot indicator
   Widget _buildDot({required bool isActive}) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 4),
+      margin: const EdgeInsets.symmetric(horizontal: 4),
       height: 8,
       width: isActive ? 20 : 8,
       decoration: BoxDecoration(

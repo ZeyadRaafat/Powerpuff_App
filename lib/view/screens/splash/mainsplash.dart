@@ -1,4 +1,4 @@
-import 'package:e_learning/core/utils/assets.dart';
+import 'package:Powerpuff/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

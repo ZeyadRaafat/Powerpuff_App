@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import '../../constants.dart';
 import '../models/log_model.dart';
 
-
 class LoginViewModel extends GetxController {
   var isLoading = false.obs;
   var loginModel = Rxn<LoginModel>();
@@ -12,7 +11,7 @@ class LoginViewModel extends GetxController {
 
   Future<void> loginUser(String email, String password) async {
     try {
-      isLoading.value=true;
+      isLoading.value = true;
       var response = await dio.post(
         '$Baseurl/v1/auth/login',
         data: {'email': email, 'password': password},
@@ -27,7 +26,7 @@ class LoginViewModel extends GetxController {
           backgroundColor: buttercupcolor,
           colorText: Colors.white,
         );
-        Get.toNamed('/home');
+        Get.toNamed('/Home_main');
       } else {
         Get.snackbar(
           "Error",

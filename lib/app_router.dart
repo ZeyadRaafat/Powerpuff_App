@@ -1,3 +1,4 @@
+import 'package:Powerpuff/view/screens/Profilemenue/menu.dart';
 import 'package:Powerpuff/view/screens/homePage.dart';
 import 'package:Powerpuff/view/screens/login&sign/Loginscreen.dart';
 import 'package:Powerpuff/view/screens/login&sign/Signupscreen.dart';
@@ -18,5 +19,6 @@ class AppRouter {
     GetPage(name: '/Login_screen', page: () => LoginScreen()),
     GetPage(name: '/Signup_screen', page: () => SignupScreen()),
     GetPage(name: '/Home_main', page: () => Homemain()),
+    GetPage(name: '/profile_menu', page: () => Profilemenu()),
   ];
 }

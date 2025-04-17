@@ -1,3 +1,4 @@
+import 'package:Powerpuff/view/screens/Profilemenue/menu.dart';
 import 'package:Powerpuff/view/widgets/bottomnavbar.dart';
 import 'package:Powerpuff/view/widgets/categorybutton.dart';
 import 'package:Powerpuff/view/widgets/coursecard.dart';
@@ -5,6 +6,7 @@ import 'package:Powerpuff/view/widgets/headline.dart';
 import 'package:Powerpuff/view/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:Powerpuff/view/widgets/photoslider.dart';
+import 'package:get/get.dart';
 
 class Homemain extends StatelessWidget {
   @override
@@ -20,46 +22,46 @@ class Homemain extends StatelessWidget {
                 height: 50,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        icon: Icon(
+                          Icons.menu,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        onPressed: () => Get.to(Profilemenu(),
+                            transition: Transition.leftToRight,
+                            duration: Duration(milliseconds: 500)),
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            "good morning",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                          Text(
+                            "Amgooodd",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                   Icon(
-                    Icons.menu,
+                    Icons.bookmark,
                     color: Theme.of(context).primaryColor,
                   ),
                 ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                          "good morning",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blueGrey,
-                          ),
-                        ),
-                        Text(
-                          "Amgooodd",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Icon(
-                      Icons.bookmark,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                  ],
-                ),
               ),
               SizedBox(
                 height: 10,
@@ -150,7 +152,9 @@ class Homemain extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNav(),
+      bottomNavigationBar: BottomNav(
+        home: true,
+      ),
     );
   }
 }

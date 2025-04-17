@@ -22,16 +22,10 @@ class _headlinee extends State<headlinee> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        GestureDetector(
-          onTap: () {},
-          child: Text(
-            widget.sectext,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).primaryColor,
-            ),
-          ),
+        TextButton.icon(
+          onPressed: () {},
+          label: Text(widget.sectext,
+              style: TextStyle(color: Theme.of(context).primaryColor)),
         ),
       ],
     );

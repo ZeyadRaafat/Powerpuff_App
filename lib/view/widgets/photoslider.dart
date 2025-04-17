@@ -17,11 +17,10 @@ class sliderpic extends StatelessWidget {
         child: CarouselSlider(
           options: CarouselOptions(
             height: 150,
-            autoPlay: true, // Enables automatic sliding
-            enlargeCenterPage: true, // Zooms in the selected image
+            autoPlay: true,
+            enlargeCenterPage: true,
             aspectRatio: 16 / 9,
-            viewportFraction:
-                0.9, // Controls how much of the next image is visible
+            viewportFraction: 0.9,
           ),
           items: images.map((image) {
             return ClipRRect(

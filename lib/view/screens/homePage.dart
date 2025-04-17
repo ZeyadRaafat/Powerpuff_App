@@ -1,6 +1,6 @@
+import 'package:Powerpuff/view/screens/Homescreen/Homemain.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../constants.dart';
 import '../../features/view_models/theme_viewmodel.dart';
 import '../widgets/elevated_button.dart';
@@ -33,6 +33,17 @@ class HomePage extends StatelessWidget {
               backgroundColor: buttercupcolor,
               text: "Buttercup Theme",
               textColor: Colors.black,
+            ),
+            SizedBox(
+              height: 100,
+            ),
+            CustomElevatedButton(
+              onPressed: () => Get.to(Homemain(),
+                  transition: Transition.fade,
+                  duration: Duration(milliseconds: 500)),
+              backgroundColor: Colors.black,
+              text: "homeee",
+              textColor: Colors.red,
             ),
           ],
         ),

@@ -1,4 +1,3 @@
-import 'package:Powerpuff/constants.dart';
 import 'package:flutter/material.dart';
 
 class DefaultText extends StatelessWidget {

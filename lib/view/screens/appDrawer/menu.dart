@@ -1,3 +1,4 @@
+import 'package:Powerpuff/core/services/local_storage_service.dart';
 import 'package:Powerpuff/view/widgets/profileoption.dart';
 import 'package:flutter/material.dart';
 import 'package:Powerpuff/features/view_models/theme_viewmodel.dart';
@@ -106,7 +107,9 @@ class _Profilemenu extends State<Profilemenu> {
               ),
               const SizedBox(height: 10),
               TextButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  LocalStorageService.logout();
+                },
                 icon: Icon(Icons.logout, color: Colors.red),
                 label: Text("Logout", style: TextStyle(color: Colors.red)),
               ),

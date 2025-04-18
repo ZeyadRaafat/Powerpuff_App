@@ -1,4 +1,3 @@
-import 'package:Powerpuff/view/screens/Profilemenue/menu.dart';
 import 'package:Powerpuff/view/widgets/bottomnavbar.dart';
 import 'package:Powerpuff/view/widgets/categorybutton.dart';
 import 'package:Powerpuff/view/widgets/coursecard.dart';
@@ -8,10 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:Powerpuff/view/widgets/photoslider.dart';
 import 'package:get/get.dart';
 
+import '../appDrawer/menu.dart';
+
 class Homemain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),

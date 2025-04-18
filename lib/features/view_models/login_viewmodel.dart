@@ -1,3 +1,4 @@
+import 'package:Powerpuff/core/services/local_storage_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,7 @@ class LoginViewModel extends GetxController {
 
       if (response.statusCode == 200 && response.data != null) {
         loginModel.value = LoginModel.fromJson(response.data);
+        await LocalStorageService.saveLoginState(true);
         Get.snackbar(
           "Success",
           "Logged in successfully!",
@@ -26,7 +28,7 @@ class LoginViewModel extends GetxController {
           backgroundColor: buttercupcolor,
           colorText: Colors.white,
         );
-        Get.toNamed('/Home_main');
+        Get.toNamed('/home');
       } else {
         Get.snackbar(
           "Error",

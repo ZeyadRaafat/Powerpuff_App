@@ -31,7 +31,11 @@ class SplashCubit extends Cubit<SplashState> {
 
     if (state.isFirstTime) {
       Get.toNamed('/splash1v1');
-    } else {
+    }
+    else if(LocalStorageService.isLoggedIn()){
+      Get.offAllNamed('/home');
+    }
+    else {
       Get.toNamed('/Login_screen');
     }
   }

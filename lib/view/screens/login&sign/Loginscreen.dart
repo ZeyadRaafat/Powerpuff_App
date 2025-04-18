@@ -18,15 +18,14 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          Padding(
+      body: SingleChildScrollView(
+        child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 100),
+                const SizedBox(height: 70),
                 DefaultText(
                   defaulttext: "Login to your account",
                   textcolor: Theme.of(context).primaryColor,
@@ -74,7 +73,6 @@ class LoginScreen extends StatelessWidget {
               ],
             ),
           ),
-        ],
       ),
     );
   }

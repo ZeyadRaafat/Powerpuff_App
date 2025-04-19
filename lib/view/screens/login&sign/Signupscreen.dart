@@ -1,7 +1,6 @@
 import 'package:Powerpuff/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:Powerpuff/constants.dart';
 import 'package:Powerpuff/features/view_models/signup_viewmodel.dart';
 import 'package:Powerpuff/view/widgets/default_text.dart';
 import 'package:Powerpuff/view/widgets/elevated_button.dart';
@@ -39,18 +38,21 @@ class SignupScreen extends StatelessWidget {
             const SizedBox(height: 30),
 
             TextFieldFor(
+              prefixIcon: Icons.verified_user,
               controller: nameController,
               hintText: 'Username',
             ),
             const SizedBox(height: 16),
 
             TextFieldFor(
+              prefixIcon: Icons.email,
               controller: emailController,
               hintText: 'Email Address',
             ),
             const SizedBox(height: 16),
 
             TextFieldFor(
+              prefixIcon: Icons.password,
               controller: passwordController,
               hintText: 'Password',
               isPasswordField: true,
@@ -59,54 +61,10 @@ class SignupScreen extends StatelessWidget {
 
             Obx(
                   () => viewModel.isLoading.value
-                  ? Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor))
+                  ? CircularProgressIndicator()
                   : CustomElevatedButton(
                 text: 'Sign Up',
-                backgroundColor: Theme.of(context).primaryColor,
-                onPressed: () {
-                  final name = nameController.text;
-                  final email = emailController.text.trim();
-                  final pass = passwordController.text;
-
-                  if (name.isEmpty || email.isEmpty || pass.isEmpty) {
-                    Get.snackbar(
-                      'Error',
-                      'All fields are required',
-                      backgroundColor: blossomcolor,
-                      colorText: Colors.white,
-                    );
-                    return;
-                  }
-                  
-                  // Validate email format
-                  if (!GetUtils.isEmail(email)) {
-                    Get.snackbar(
-                      'Error',
-                      'Please enter a valid email address',
-                      backgroundColor: blossomcolor,
-                      colorText: Colors.white,
-                    );
-                    return;
-                  }
-                  
-                  // Validate password length
-                  if (pass.length < 6) {
-                    Get.snackbar(
-                      'Error',
-                      'Password must be at least 6 characters',
-                      backgroundColor: blossomcolor,
-                      colorText: Colors.white,
-                    );
-                    return;
-                  }
-
-                  // Call the register method from viewModel
-                  viewModel.registerUser(
-                    name: name,
-                    email: email,
-                    password: pass,
-                  );
-                },
+                onPressed: viewModel.registerUser,
               ),
             ),
 

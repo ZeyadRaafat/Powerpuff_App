@@ -9,6 +9,14 @@ class LocalStorageService {
   static Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
   }
+  
+  static Future<String?> getString(String key) async {
+    return _prefs?.getString(key);
+  }
+
+  static Future<void> saveString(String key, String value) async {
+    await _prefs?.setString(key, value);
+  }
 
   static bool getFirstTime() {
     if (_prefs == null) {
@@ -33,5 +41,9 @@ class LocalStorageService {
   static Future<void> logout() async {
     await _prefs?.setBool(_isLoggedInKey, false);
     Get.offAllNamed('/Login_screen');
+  }
+  
+  static Future<void> removeKey(String key) async {
+    await _prefs?.remove(key);
   }
 }

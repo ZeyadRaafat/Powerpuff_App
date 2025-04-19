@@ -5,11 +5,18 @@ import 'app_router.dart';
 import 'core/services/local_storage_service.dart';
 import 'features/cupit/splash_cupit.dart';
 import 'features/view_models/theme_viewmodel.dart';
+import 'features/view_models/login_viewmodel.dart';
+import 'features/view_models/user_viewmodel.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await LocalStorageService.init();
 
+  // Register view models
+  Get.put(ThemeViewModel());
+  Get.put(LoginViewModel());
+  Get.put(UserViewModel());
+  
   runApp(
     BlocProvider(
       create: (_) => SplashCubit(),

@@ -14,7 +14,7 @@ class LoginWays extends StatelessWidget {
           onPressed: () {},
         ),
         IconButton(
-          icon: Icon(Icons.apple, color: Colors.black, size: 30.0),
+          icon: Icon(Icons.apple, color: Theme.of(context).indicatorColor, size: 30.0),
           onPressed: () {},
         ),
         IconButton(

@@ -24,13 +24,13 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Column(
         children: [
           Container(
             alignment: Alignment(0, -1),
             child: Lottie.asset(
-              AssetsData.gif1,
+              AssetsData.gif2,
               width: 350,
               height: 600,
               fit: BoxFit.contain,

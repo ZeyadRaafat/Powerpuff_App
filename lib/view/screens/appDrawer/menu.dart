@@ -1,4 +1,5 @@
 import 'package:Powerpuff/core/services/local_storage_service.dart';
+import 'package:Powerpuff/features/view_models/user_viewmodel.dart';
 import 'package:Powerpuff/view/widgets/profileoption.dart';
 import 'package:flutter/material.dart';
 import 'package:Powerpuff/features/view_models/theme_viewmodel.dart';
@@ -10,6 +11,7 @@ class Profilemenu extends StatefulWidget {
 }
 
 class _Profilemenu extends State<Profilemenu> {
+  final UserViewModel userViewModel = Get.find<UserViewModel>();
   String activeTheme = "";
 
   void _onThemeChanged(String theme, bool enabled) {
@@ -57,7 +59,7 @@ class _Profilemenu extends State<Profilemenu> {
                 children: [
                   const CircleAvatar(
                     radius: 50,
-                    backgroundImage: AssetImage('assets/images/math.png'),
+                    backgroundImage: AssetImage('assets/images/zoro.png'),
                   ),
                   Positioned(
                     bottom: 4,
@@ -71,8 +73,13 @@ class _Profilemenu extends State<Profilemenu> {
                 ],
               ),
               SizedBox(height: 10),
-              Text("Amgooodd eltop",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              Obx(() => Text(
+                userViewModel.getUserName,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              )),
               Text("Amgooodd@ohyeah.com", style: TextStyle(color: Colors.grey)),
               SizedBox(height: 20),
               Divider(),
@@ -104,6 +111,13 @@ class _Profilemenu extends State<Profilemenu> {
                 showSwitch: true,
                 switchValue: activeTheme == "Buttercup",
                 onChanged: (val) => _onThemeChanged("Buttercup", val),
+              ),
+              ProfileOption(
+                icon: Icons.dark_mode_outlined,
+                text: "Mojo Mode",
+                showSwitch: true,
+                switchValue: activeTheme == "Mojo",
+                onChanged: (val) => _onThemeChanged("Mojo", val),
               ),
               const SizedBox(height: 10),
               TextButton.icon(

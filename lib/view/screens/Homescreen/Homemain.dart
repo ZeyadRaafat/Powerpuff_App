@@ -6,16 +6,15 @@ import 'package:Powerpuff/view/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:Powerpuff/view/widgets/photoslider.dart';
 import 'package:get/get.dart';
+import 'package:Powerpuff/features/view_models/user_viewmodel.dart';
 
 import '../appDrawer/menu.dart';
 
 class Homemain extends StatelessWidget {
+  final UserViewModel userViewModel = Get.find<UserViewModel>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-
-      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -50,13 +49,13 @@ class Homemain extends StatelessWidget {
                               color: Colors.blueGrey,
                             ),
                           ),
-                          Text(
-                            "Amgooodd",
+                          Obx(() => Text(
+                            userViewModel.getUserName,
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
-                          ),
+                          )),
                         ],
                       ),
                     ],

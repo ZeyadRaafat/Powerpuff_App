@@ -1,117 +1,112 @@
-import 'dart:convert';
-
-import 'package:Powerpuff/view/screens/login&sign/Loginscreen.dart';
-import 'package:Powerpuff/view/screens/login&sign/Signupscreen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../constants.dart';
+import 'package:Powerpuff/core/services/local_storage_service.dart';
 import '../models/signup_model.dart';
 
 class SignupViewModel extends GetxController {
+  // Input fields (Reactive)
+  var name = ''.obs;
+  var email = ''.obs;
+  var password = ''.obs;
+
+  // States
   var isLoading = false.obs;
   var registerModel = Rxn<RegisterModel>();
-  late final Dio _dio;
 
-  SignupViewModel() {
-    _dio = Dio();
+  final Dio _dio = Dio();
+
+  /// Validates the input fields and shows snackbars if needed
+  bool _validateInputs() {
+    if (name.value.trim().isEmpty || email.value.trim().isEmpty || password.value.isEmpty) {
+      Get.snackbar(
+        'Error',
+        'All fields are required',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: blossomcolor,
+        colorText: Colors.white,
+      );
+      return false;
+    }
+    if (!GetUtils.isEmail(email.value.trim())) {
+      Get.snackbar(
+        'Error',
+        'Please enter a valid email address',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: blossomcolor,
+        colorText: Colors.white,
+      );
+      return false;
+    }
+    if (password.value.length < 6) {
+      Get.snackbar(
+        'Error',
+        'Password must be at least 6 characters',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: blossomcolor,
+        colorText: Colors.white,
+      );
+      return false;
+    }
+    return true;
   }
 
-  Future<void> registerUser({
-    required String name,
-    required String email,
-    required String password,
-  }) async {
-    try {
-      isLoading.value = true;
+  /// Handles the registration process
+  Future<void> registerUser() async {
+    if (!_validateInputs()) return;
 
-      // Log registration attempt
-      print('Attempting to register user: $email');
-      
+    isLoading.value = true;
+
+    try {
       final response = await _dio.post(
-        '$Baseurl/v1/auth/register',
+        '$Baseurl/v1/auth/register', // ✅ no backslash
         data: {
-          'name': name,
-          'email': email,
-          'password': password,
+          'name': name.value.trim(),
+          'email': email.value.trim(),
+          'password': password.value,
         },
       );
 
-      print('Registration response status: ${response.statusCode}');
+      final status = response.statusCode;
+      final data = response.data;
 
-      if (response.statusCode == 200) {
-        // Dio already parses the JSON response
-        final responseData = response.data;
-        
-        if (responseData['status'] == 'SUCCESS') {
-          // Store token if needed
-          var token = responseData['data']['token'];
-          
-          Get.snackbar(
-            'Registration Successful',
-            'Welcome, $name!',
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.green,
-            colorText: Colors.white,
-            borderRadius: 10,
-            margin: EdgeInsets.all(10),
-            duration: Duration(seconds: 3),
-            icon: Icon(Icons.check_circle, color: Colors.white),
-          );
-          
-          // Navigate to login screen after successful registration
-          Get.offAllNamed('/Login_screen');
-        }
-      } else {
-        // Handle API errors
-        final errorMsg = response.data?['message'] ?? 'Registration failed';
+      if ((status == 200 || status == 201) && data is Map) {
+        registerModel.value = RegisterModel.fromJson(Map<String, dynamic>.from(data));
+        final msg = registerModel.value!.message ?? 'Registered successfully!';
+
+        Get.snackbar(
+          'Success',
+          msg,
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: buttercupcolor,
+          colorText: Colors.white,
+        );
+
+        await LocalStorageService.saveLoginState(true);
+        Get.offAllNamed('/home');
+      } else if (data is Map && data['message'] != null) {
         Get.snackbar(
           'Error',
-          errorMsg,
+          data['message'],
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: blossomcolor,
+          colorText: Colors.white,
+        );
+      } else {
+        Get.snackbar(
+          'Error',
+          'Registration failed. Please try again.',
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: blossomcolor,
           colorText: Colors.white,
         );
       }
-    } catch (e) {
-      // Handle API errors with detailed messages
-      String errorMessage= 'Something went wrong. Please try again.';
-      
-      if (e is DioException) {
-        // Extract error message from DioException
-        print('DioException during registration: ${e.type}, Status: ${e.response?.statusCode}');
-        if (e.response != null) {
-          // Check specifically for 503 Service Unavailable error
-          if (e.response!.statusCode == 503) {
-            errorMessage = 'Server is temporarily unavailable, please try again later';
-            print('503 Service Unavailable error encountered during registration');
-          } else if (e.response!.data is Map<String, dynamic>) {
-            // Try to get the error message from the response data
-            final responseData = e.response!.data as Map<String, dynamic>;
-            
-            if (responseData.containsKey('message')) {
-              errorMessage = responseData['message'];
-            } else if (responseData.containsKey('error')) {
-              errorMessage = responseData['error'];
-            } else if (responseData.containsKey('data') && responseData['data'] is List) {
-              // Extract validation errors if available
-              final dataList = responseData['data'] as List;
-              if (dataList.isNotEmpty && dataList[0] is Map<String, dynamic>) {
-                final firstError = dataList[0] as Map<String, dynamic>;
-                if (firstError.containsKey('msg')) {
-                  errorMessage = firstError['msg'];
-                }
-              }
-            }
-          } else if (e.response!.data is String) {
-            errorMessage = e.response!.data;
-          }
-        } else if (e.error != null) {
-          // Network errors
-          errorMessage = 'Network error: ${e.error.toString()}';
-        }
+    } on DioError catch (e) {
+      String errorMessage = 'Something went wrong. Please try again.';
+      if (e.response?.data is Map && e.response?.data['message'] != null) {
+        errorMessage = e.response!.data['message'];
       }
-      
       Get.snackbar(
         'Error',
         errorMessage,
@@ -119,9 +114,15 @@ class SignupViewModel extends GetxController {
         backgroundColor: blossomcolor,
         colorText: Colors.white,
       );
-      print('Registration error: $e');
-    }
-    finally {
+    } catch (_) {
+      Get.snackbar(
+        'Error',
+        'An unexpected error occurred. Please try again.',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: blossomcolor,
+        colorText: Colors.white,
+      );
+    } finally {
       isLoading.value = false;
     }
   }
